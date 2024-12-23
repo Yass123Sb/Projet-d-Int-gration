@@ -1,0 +1,80 @@
+<div class="min-h-screen flex justify-center items-center">
+    <div class="flex flex-col w-9/12 gap-6 shadow-lg p-10 rounded-xl bg-white mt-5">
+      <h4 class="text-2xl font-bold text-blue-600 text-center mb-6">Créer une Offre d'Emploi</h4>
+      <div class="grid grid-cols-4 gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Titre du Poste</mat-label>
+          <input
+            type="text"
+            matInput
+            [(ngModel)]="title"
+            placeholder="Entrez le titre du poste"
+            class="no-outline-input"
+          />
+        </mat-form-field>
+  
+        <mat-form-field class="w-full">
+          <mat-label>Département</mat-label>
+          <mat-select [(ngModel)]="department" placeholder="Choisissez le département">
+            <mat-option *ngFor="let dep of departements" [value]="dep">{{ dep }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field class="w-full">
+          <mat-label>Niveau d'Études</mat-label>
+          <mat-select [(ngModel)]="degree" placeholder="Choisissez le niveau d'études">
+            <mat-option value="Bachelor's in Computer Science">Licence</mat-option>
+            <mat-option value="Master's in Computer Science">Master</mat-option>
+            <mat-option value="PhD in Computer Science">Doctorat</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field class="w-full">
+          <mat-label>Région</mat-label>
+          <input
+            type="text"
+            matInput
+            [(ngModel)]="region"
+            placeholder="Entrez la région"
+            class="no-outline-input"
+          />
+        </mat-form-field>
+  
+        <mat-form-field class="w-full">
+          <mat-label>Salaire</mat-label>
+          <input
+            type="text"
+            matInput
+            [(ngModel)]="salary"
+            placeholder="Entrez le salaire (ex: 3500 TND par mois)"
+            class="no-outline-input"
+          />
+        </mat-form-field>
+  
+        <mat-form-field class="col-span-2 w-full">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            [(ngModel)]="description"
+            placeholder="Décrivez les détails du poste"
+            rows="4"
+            class="no-outline-input"
+          ></textarea>
+        </mat-form-field>
+      </div>
+  
+      <!-- Error Message -->
+      <p *ngIf="errorMessage" class="text-red-500 font-bold text-center">{{ errorMessage }}</p>
+  
+      <div class="w-80 flex flex-col items-center mx-auto">
+        <button
+          mat-raised-button
+          color="primary"
+          class="w-full mt-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-md transition duration-300"
+          (click)="createJobOffer()"
+        >
+          Ajouter Offre
+        </button>
+      </div>
+    </div>
+  </div>

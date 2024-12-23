@@ -1,0 +1,54 @@
+
+  <div class="min-h-screen flex justify-center items-center">
+    <div class="flex flex-col w-9/12 gap-6 shadow-lg p-10 rounded-xl bg-white mt-5">
+      <h4 class="text-2xl font-bold text-blue-600 text-center mb-6">S'inscrire</h4>
+      <div class="grid grid-cols-2 gap-4">
+      <mat-form-field class="w-full">
+        <mat-label>Nom</mat-label>
+        <input type="text" matInput [(ngModel)]="name" placeholder="Entrez votre nom complet" class="no-outline-input" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>E-mail</mat-label>
+        <input type="text" matInput [(ngModel)]="email" placeholder="Entrez votre email" class="no-outline-input" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Mot de passe</mat-label>
+        <input type="password" matInput [(ngModel)]="password" placeholder="Entrez votre mot de passe" class="no-outline-input" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Département</mat-label>
+        <mat-select [(ngModel)]="department" placeholder="Choisissez votre département">
+          <mat-option *ngFor="let dep of departements" [value]="dep">{{ dep }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      @if (role ==="candidate") {
+      <mat-form-field class="w-full">
+        <mat-label>Niveau</mat-label>
+        <mat-select [(ngModel)]="degree" placeholder="Choisissez votre niveau">
+          <mat-option value="Ingénieur">Ingénieur</mat-option>
+          <mat-option value="Master">Master</mat-option>
+          <mat-option value="Licence">Licence</mat-option>
+          <mat-option value="Étudiant">Étudiant</mat-option>
+        </mat-select>
+      </mat-form-field>
+    }
+    
+    <!-- Display error message -->
+    <p *ngIf="errorMessage" class="text-red-500 font-bold text-center">{{ errorMessage }}</p>
+  </div>
+  <mat-radio-group [(ngModel)]="role" name="role" class="w-full items-center">
+    <mat-radio-button value="candidate">Candidat</mat-radio-button>
+    <mat-radio-button value="boss">Entreprise</mat-radio-button>
+  </mat-radio-group>
+  <div class="w-80 flex flex-col items-center mx-auto">
+    <button mat-raised-button color="primary" class="w-full mt-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-md transition duration-300" (click)="join()">
+      Rejoindre la plateforme
+    </button>
+    <button mat-flat-button color="accent" class="w-full mt-2 py-2 text-blue-600 hover:text-blue-800 transition duration-300" [routerLink]="['/login']">
+      J'ai un compte ? Connectez-vous
+    </button>
+  </div>

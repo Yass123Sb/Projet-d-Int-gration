@@ -1,0 +1,44 @@
+<div class="min-h-screen flex justify-center items-center">
+    <div *ngIf="candidate" class="shadow-lg p-6 rounded-lg bg-white w-100">
+      <h2 class="text-2xl font-bold text-blue-600 mb-4 text-center">
+        Mon profil
+      </h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <p class="text-gray-600 font-semibold">Nom :</p>
+          <p class="text-gray-900">{{ candidate.name }}</p>
+        </div>
+        <div>
+          <p class="text-gray-600 font-semibold">E-mail :</p>
+          <p class="text-gray-900">{{ candidate.email }}</p>
+        </div>
+        <div>
+          <p class="text-gray-600 font-semibold">Rôle :</p>
+          <p class="text-gray-900">{{ candidate.role }}</p>
+        </div>
+        <div>
+          <p class="text-gray-600 font-semibold">Niveau d'étude :</p>
+          <p class="text-gray-900">{{ candidate.degree }}</p>
+        </div>
+        <div>
+          <p class="text-gray-600 font-semibold">Département :</p>
+          <p class="text-gray-900">{{ candidate.department }}</p>
+        </div>
+        <div>
+          <p class="text-gray-600 font-semibold">Inscrit le :</p>
+          <p class="text-gray-900">
+            {{ candidate.createdAt | date: 'dd/mm/YYYY' }}
+          </p>
+        </div>
+        <div>
+          <p class="text-gray-600 font-semibold">Score :</p>
+          <p class="text-gray-900">
+            {{ score || 'non disponible' }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!candidate" class="text-center">
+      <p class="text-red-600">Chargement des détails du candidat...</p>
+    </div>
+  </div>

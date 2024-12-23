@@ -1,0 +1,137 @@
+<main class="p-6 sm:p-10 space-y-6">
+  <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row items-center justify-center">
+    <div class="mr-6">
+      <h1 class="text-4xl font-semibold mb-2">Dashboard</h1>
+    </div>
+  </div>
+  <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div class="flex items-center p-8 bg-white shadow rounded-lg">
+      <div
+        class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="h-6 w-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      </div>
+      <div>
+        <span class="block text-2xl font-bold">{{candidates.length}}</span>
+        <span class="block text-gray-500">candidats</span>
+      </div>
+    </div>
+    <div class="flex items-center p-8 bg-white shadow rounded-lg">
+      <div
+        class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-green-600 bg-green-100 rounded-full mr-6"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="h-6 w-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      </div>
+      <div>
+        <span class="block text-2xl font-bold">{{recruters.length}}</span>
+        <span class="block text-gray-500">Recruteurs</span>
+      </div>
+    </div>
+    <div class="flex items-center p-8 bg-white shadow rounded-lg">
+      <div
+        class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-red-600 bg-red-100 rounded-full mr-6"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="h-6 w-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 3h18v2H3V3zm2 4h14v12H5V7zm4 2v8m4-8v8"
+          />
+        </svg>
+      </div>
+      <div>
+        <span class="inline-block text-2xl font-bold">{{jobs.length}}</span
+        >
+        <span class="block text-gray-500">Offres d'emploi</span>
+      </div>
+    </div>
+  </section>
+  <section
+    class="grid md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-3 xl:grid-flow-col gap-6"
+  >
+    <div class="row-span-3 bg-white shadow rounded-lg">
+      <div
+        class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100"
+      >
+        <span>Derniers candidats</span>
+        <!-- Refer here for full dropdown menu code: https://tailwindui.com/components/application-ui/elements/dropdowns -->
+      </div>
+      <div class="overflow-y-auto" style="max-height: 24rem">
+        <ul *ngFor="let candidat of candidates.slice(-10)" class="p-6 space-y-6">
+          <li class="flex items-center">
+            <span class="text-gray-600">{{ candidat.name }}</span>
+            <span class="ml-2 text-green-600">{{ candidat.degree }}</span>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="row-span-3 bg-white shadow rounded-lg">
+      <div
+        class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100"
+      >
+        <span>Derniers recruteurs</span>
+        <!-- Refer here for full dropdown menu code: https://tailwindui.com/components/application-ui/elements/dropdowns -->
+      </div>
+      <div class="overflow-y-auto" style="max-height: 24rem">
+        <ul *ngFor="let recruter of recruters.slice(-10)" class="p-6 space-y-6">
+          <li class="flex items-center">
+            <span class="text-gray-600">{{ recruter.name }}</span>
+            <span class="ml-2 text-blue-600">{{ recruter.department }}</span>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="row-span-3 bg-white shadow rounded-lg">
+      <div
+        class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100"
+      >
+        <span>Derniers offres</span>
+        <!-- Refer here for full dropdown menu code: https://tailwindui.com/components/application-ui/elements/dropdowns -->
+      </div>
+      <div class="overflow-y-auto" style="max-height: 24rem">
+        <ul *ngFor="let job of jobs.slice(-10)" class="p-6 space-y-6">
+            <li class="flex items-center">
+              <span class="text-gray-600">{{ job.title }}</span>
+              <span class="ml-2 text-red-600">{{ job.region }}</span>
+            </li>
+  
+          </ul>
+      </div>
+    </div>
+  </section>
+</main>

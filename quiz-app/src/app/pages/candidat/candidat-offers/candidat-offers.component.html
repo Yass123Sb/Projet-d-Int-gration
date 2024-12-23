@@ -1,0 +1,67 @@
+<div class="flex justify-center items-center h-75">
+    <!-- Container for the offers list -->
+    <div class="flex flex-col items-center w-75 gap-4 shadow-xl p-10 rounded-xl bg-white transform transition duration-500 hover:scale-105">
+      
+      <!-- Title Section -->
+      <h4 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-3xl dark:text-white">
+       Mes demandes
+      </h4>
+      
+      <!-- Offers Table -->
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">Titre de l'offre</th>
+            <th scope="col" class="px-6 py-3">Recruteur</th>
+            <th scope="col" class="px-6 py-3">Département</th>
+            <th scope="col" class="px-6 py-3">Statut</th>
+            <th scope="col" class="px-6 py-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offer of offers" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4">{{ offer.JobPostId.title }}</td>
+            <td class="px-6 py-4">{{ offer.recruterId
+              .name }}</td>
+            <td class="px-6 py-4">{{ offer.JobPostId.department }}</td>
+  
+            <td class="px-6 py-4">    <span *ngIf="offer.status === 'pending'">En attente</span>
+              <span *ngIf="offer.status === 'rejected'">Rejetée</span>
+              <span *ngIf="offer.status === 'accepted'">Approuvée</span></td>
+            <td class="px-6 py-4">
+              <!-- Delete Button -->
+              <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal(offer._id)">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Modal for Confirming Deletion -->
+  <div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-25 my-6 mx-auto max-w-2xl">
+      <!-- Modal Content -->
+      <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+        <!-- Modal Body -->
+        <div class="relative p-6 flex-auto">
+          <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+            Êtes-vous sûr de vouloir supprimer cette offre ?
+          </p>
+        </div>
+        <!-- Modal Footer -->
+        <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+          <!-- Cancel Button -->
+          <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+            Annuler
+          </button>
+          <!-- Confirm Button -->
+          <button class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="deleteElement()">
+            Valider
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
